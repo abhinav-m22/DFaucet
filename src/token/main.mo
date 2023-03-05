@@ -35,11 +35,34 @@ actor Token{
         // Debug.print(debug_show(msg.caller));
         if(balances.get(msg.caller) == null){
             let amount = 10000;
-            balances.put(msg.caller, amount);
-            return "Success";
+            // balances.put(msg.caller, amount);
+            let result = await transfer(msg.caller, amount);
+            // return "Success";
+            return result;
         } else{
             return "Already Claimed the coins";
         }
+        
+    };
+
+    public shared(msg) func transfer(to: Principal, amount: Nat): async Text{
+        // let result = await payOut();
+        let fromBalance = await balanceOf(msg.caller);
+
+        if(fromBalance > amount){
+
+            let newFromBalance: Nat = fromBalance - amount;
+            balances.put(msg.caller, newFromBalance);
+
+            let toBalance = await balanceOf(to);
+            let newToBalance = toBalance + amount;
+            balances.put(to, newToBalance);
+
+            return "Success";
+        } else{
+            return "Insufficient Balance";
+        }
+
         
     };
 }
