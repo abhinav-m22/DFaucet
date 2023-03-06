@@ -1,3 +1,13 @@
+# DFaucet
+
+Created a custom token on the Internet Computer (ICP) Blockchain.  
+A decentralized system where the users can perform transactions and check their balance using the principal id.
+## Steps:
+1. Visit the link provided in the description and disable the pop-ups in the browser.
+2. Authenticate via the ICP network to get verified and the app should be accessible by now.
+3. Claim the free tokens and get the principal id.
+4. Check the balance and perform transactions to understand about how the process works.
+
 # Check your Balance
 
 1. Find out your principal id:
