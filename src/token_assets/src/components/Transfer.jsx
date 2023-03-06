@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {Principal} from "@dfinity/principal";
-import { token } from "../../../declarations/token";
+import { token, canisterId, createActor } from "../../../declarations/token";
+import { AuthClient } from "../../../../node_modules/@dfinity/auth-client/lib/cjs/index";
 
 function Transfer() {
 
@@ -15,7 +16,17 @@ function Transfer() {
     setDisabled(true);
     const recipient = Principal.fromText(recipientId);
     const amountToTransfer = Number(amount);
-    const results = await token.transfer(recipient, amountToTransfer);
+
+    const authClient = await AuthClient.create();
+    const identity = await authClient.getIdentity();
+    const authenticatedCanister = createActor(canisterId, {
+      agentOptions: {
+        identity,
+      },
+    });
+
+    // const results = await token.transfer(recipient, amountToTransfer);
+    const results = await authenticatedCanister.transfer(recipient, amountToTransfer);
     setFeedback(results);
     setHidden(false);
     setDisabled(false);

@@ -82,4 +82,4 @@ dfx canister --network ic call token transfer "($LIVE_CANISTER_KEY, 50_000_000)"
 dfx canister --network ic id token_assets
 ```
 7. Copy the id from step 6 and add .raw.ic0.app to the end to form a URL.
-e.g. zdv65-7qaaa-aaaai-qibdq-cai.raw.ic0.app
+e.g. https://6pytp-6iaaa-aaaao-ahv7a-cai.raw.ic0.app/
